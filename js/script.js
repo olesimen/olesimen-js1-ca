@@ -3,11 +3,11 @@ const baseUrl = "https://rickandmortyapi.com/api/character/";
 fetch(baseUrl)
     .then(response => response.json())
     .then(json => createCard(json))
-    .catch(error => console.log(error));
+    .catch(error => (window.location.href = "error.html"));
 
 function createCard(json) {
     const results = json.results;
-    // console.dir(results);
+    console.dir(results);
     const resultsContainer = document.querySelector(".row.results");
 
     let cardHtml = "";
@@ -25,6 +25,8 @@ function createCard(json) {
         }
         let episodeCount = result.episode.length;
 
+        let characterId = result.id;
+
         cardHtml += `<div class="col-sm-6 col-md-4 col-lg-3">                
                     <div class="card">    
                         <img class="image" src="${imageUrl}" alt="${name}">
@@ -32,7 +34,7 @@ function createCard(json) {
                             <h4 class="name">${name}</h4>
                             <p>Type: ${type}</p>    
                             <p>Episode count: ${episodeCount}</p>                                  
-                            <a class="btn btn-primary" href="details.html?id=">Details</a>
+                            <a class="btn btn-primary" href="details.html?id=${characterId}">Details</a>
                         </div>
                     </div>
                 </div>`;
