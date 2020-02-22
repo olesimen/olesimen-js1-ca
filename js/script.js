@@ -23,6 +23,7 @@ function createCard(json) {
         if (result.type) {
             type = result.type;
         }
+        // Use ternary operator?
         let episodeCount = result.episode.length;
 
         let characterId = result.id;
